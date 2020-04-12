@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    name { "MyString" }
+    name { Faker::Movies::HarryPotter.character }
     completed { false }
-    list { "" }
+    todo_id { nil }
   end
 end
