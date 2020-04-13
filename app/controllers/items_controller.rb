@@ -37,7 +37,8 @@ class ItemsController < ApplicationController
   end
 
   def set_list
-    @list = List.find(params[:list_id])
+    @list = current_user.lists.find_by!(id: params[:list_id]
+    )
   end
 
   def set_item
