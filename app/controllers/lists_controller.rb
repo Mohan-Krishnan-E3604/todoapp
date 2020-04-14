@@ -33,7 +33,7 @@ class ListsController < ApplicationController
   private
 
   def todo_params
-    params.permit(:title)
+    params.permit(:title, :locale)
   end
 
   def set_list

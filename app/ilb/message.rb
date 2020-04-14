@@ -1,33 +1,33 @@
 class Message
   def self.not_found(record = 'record')
-    "Sorry, #{record} not found."
+    I18n.t('message.record_not_found', record_id: record)
   end
 
   def self.invalid_credentials
-    'Invalid credentials'
+    I18n.t('message.invalid_credentials')
   end
 
   def self.invalid_token
-    'Invalid token'
+    I18n.t('message.invalid_token')
   end
 
   def self.missing_token
-    'Missing token'
+    I18n.t('message.missing_token')
   end
 
   def self.unauthorized
-    'Unauthorized request'
+    I18n.t('message.unauthorized_request')
   end
 
   def self.account_created
-    'Account created successfully'
+    I18n.t('message.account_created')
   end
 
   def self.account_not_created
-    'Account could not be created'
+    I18n.t('message.account_could_not_created')
   end
 
   def self.expired_token
-    'Sorry, your token has expired. Please login to continue.'
+    I18n.t('message.expired_token')
   end
 end

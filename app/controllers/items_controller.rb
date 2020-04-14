@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.permit(:name, :completed)
+    params.permit(:name, :completed, :locale)
   end
 
   def set_list

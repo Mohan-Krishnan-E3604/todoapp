@@ -18,6 +18,8 @@ gem 'rails-api'
 gem 'active_model_serializers', '~> 0.10.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# Rails i18n
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 
 gem 'jwt'
 
