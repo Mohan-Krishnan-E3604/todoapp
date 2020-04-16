@@ -20,6 +20,10 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'bcrypt', '~> 3.1.7'
 # Rails i18n
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
+# Sidekiq for async works
+gem 'sidekiq'
+gem 'sendgrid-actionmailer'
+
 
 gem 'jwt'
 

@@ -12,7 +12,7 @@ RSpec.describe 'Users API', type: :request do
       it 'creates a new user' do
         post '/signup', valid_attributes, headers: headers
         expect(response).to have_http_status(201)
-        expect(json['message']).to match('Account created successfully')
+        expect(json['message']).to match('Account Created Successfully')
         expect(json['auth_token']).not_to be_nil
       end
     end

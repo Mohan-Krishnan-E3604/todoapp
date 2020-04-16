@@ -24,5 +24,11 @@ module Todoapp
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.available_locales = [:en, :pt]
     config.i18n.default_locale = :en
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.sendgrid_actionmailer_settings = {
+        api_key: ENV['SENDGRID_API_KEY'],
+        raise_delivery_errors: true
+    }
   end
 end
