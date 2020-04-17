@@ -2,6 +2,7 @@
 require 'spec_helper'
 require 'database_cleaner'
 require 'simplecov'
+require 'mock_redis'
 SimpleCov.start
 ENV['RAILS_ENV'] ||= 'test'
 
@@ -92,5 +93,10 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
+  end
+
+  # redis clear
+  config.before(:each) do
+    REDIS.flushdb
   end
 end

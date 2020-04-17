@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  include RedisHelper
+
   before_action :set_list
   before_action :set_item, only: [:show, :update, :destroy]
 
@@ -9,7 +11,12 @@ class ItemsController < ApplicationController
 
   # GET /lists/:list_id/items/:id
   def show
-    json_response(@item)
+    item = REDIS.get(todo_item_key(params[:id]))
+    if item.blank?
+      item = @item.to_json
+      REDIS.setex(todo_item_key(params[:id]), 10.hour.to_i, item)
+    end
+    json_response(item)
   end
 
   # POST /lists/:list_id/items
@@ -37,8 +44,7 @@ class ItemsController < ApplicationController
   end
 
   def set_list
-    @list = current_user.lists.find_by!(id: params[:list_id]
-    )
+    @list = current_user.lists.find_by!(id: params[:list_id])
   end
 
   def set_item

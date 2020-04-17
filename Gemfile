@@ -22,8 +22,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 # Sidekiq for async works
 gem 'sidekiq'
+# SendGrid action mailer
 gem 'sendgrid-actionmailer'
 
+gem 'redis'
 
 gem 'jwt'
 
@@ -50,6 +52,7 @@ group :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'mock_redis'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

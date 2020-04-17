@@ -91,6 +91,7 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.10.1)
+    mock_redis (0.22.0)
     nokogiri (1.10.9-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     pg (0.21.0-x64-mingw32)
@@ -214,10 +215,12 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jwt
+  mock_redis
   pg (~> 0.15)
   rails (= 4.2.11.1)
   rails-api
   rails-i18n!
+  redis
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

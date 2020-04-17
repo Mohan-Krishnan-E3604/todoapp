@@ -1,6 +1,8 @@
 require 'rails_helper'
+require 'redis'
 
 RSpec.describe 'Items API' do
+  include RedisHelper
 
   let(:user) { create(:user) }
   let!(:list) { create(:list, created_by: user.id) }
@@ -42,6 +44,22 @@ RSpec.describe 'Items API' do
         expect(response).to have_http_status(404)
       end
     end
+
+    context 'use redis cache if available' do
+      it 'should return item' do
+        expect(REDIS).to receive(:get).with(todo_item_key(id)).and_return(items.first.to_json)
+        expect(REDIS).not_to receive(:setex)
+        get "/lists/#{list_id}/items/#{id}", {}, headers
+      end
+    end
+
+    context 'use db cache is not available' do
+      it 'should set redis cache' do
+        expect(REDIS).to receive(:setex).with(todo_item_key(id), 1.hour.to_i, items.first.to_json)
+        get "/lists/#{list_id}/items/#{id}", {}, headers
+      end
+    end
+
   end
 
   describe 'POST /lists/:list_id/items' do
