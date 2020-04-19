@@ -1,0 +1,155 @@
+FORMAT: 1A
+
+# Todo API
+
+Todo api lists which is created by learning purpose.
+
+# User Signup action [/singup]
+
+## Signup [POST]
+
+User signup action, after user creation users will receive welcome mail.
+
++ Request signup (application/json; charset=utf-8)
+    + Attributes
+        + name: UserName (string)
+        + email: UserEmail (string)
+        + password: UserPassword (string)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + message: Account Created Successfully (string)
+        + auth_token: JWT token for authentication
+
+# User Signin action [/auth/signin]
+
+## login [POST]
+
+User login which will return jwt token for authentication.
+
++ Request signup (application/json; charset=utf-8)
+    + Attributes
+        + email: UserEmail (string)
+        + password: UserPassword (string)
++ Response 200 (application/json; charset=utf-8)
+    + Attributes
+        + auth_token: JWT token for authentication
+
+# lists action [/lists]
+
+## Create list [POST]
+
+Will create a todo list
+
++ Request lists (application/json; charset=utf-8)
+    + Attributes
+        + title: MyString (string)
+        
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (lists)
+
+## Get lists [GET]
+
+Will return todo list with items.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + (todos)
+
+# list action [/lists/{id}]
+
++ Parameters
+    + id: `1` (enum[string]) - The ID of the desired list.
+        + Members
+            + `1`
+            + `2`
+            + `3`
+
+## Get list [GET]
+
+return list data.
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (lists)
+
+## Update list [PUT]
+
++ Request lists (application/json; charset=utf-8)
+    + Attributes
+        + title: MyString (string)
+        
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (lists)
+
+## Delete list [DELETE]
+
++ Response 204
+
+
+# items action [/lists/{list_id}/items]
+
++ Parameters
+    + list_id: `1` (enum[string]) - The ID of the desired list.
+
+## Create item [POST]
+
++ Request items (application/json; charset=utf-8)
+    + Attributes
+        + name: MyString (string)
+        + completed: false (boolean)
+        
++ Response 201 (application/json; charset=utf-8)
+    + Attributes (items)
+
+## Get items [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (array)
+        + (items)
+        + (items)
+
+# item action [/lists/{list_id}/items/{id}]
+
++ Parameters
+    + list_id: `1` (enum[string]) - The ID of the desired list.
+    + id: `1` (enum[string]) - The ID of the desired item.
+
+## Get item [GET]
+
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (items)
+
+## Update item [PUT]
+
++ Request items (application/json; charset=utf-8)
+    + Attributes
+        + name: MyString (string)
+        + completed: false (boolean)
+        
++ Response 200 (application/json; charset=utf-8)
+    + Attributes (items)
+
+## Delete item [DELETE].
+
++ Response 204
+
+# Data Structures
+
+## items (object)
+
++ id: 1 (number) - Id
++ name: MyString (string)
++ completed: false (boolean)
++ created_at: `2000-01-01 00:00:00` (string) - CreatedTime
++ updated_at: `2000-01-01 00:00:00` (string) - UpdatedTime
+
+## lists (object)
+
++ id: 1 (number) - Id
++ title: MyString (string)
++ created_at: `2000-01-01 00:00:00` (string) - CreatedTime
++ updated_at: `2000-01-01 00:00:00` (string) - UpdatedTime
+
+
+## todos (object)
++ lists (lists)
+    + items (array[items])
