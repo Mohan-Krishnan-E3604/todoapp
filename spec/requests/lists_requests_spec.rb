@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Todo List API', type: :request do
+RSpec.describe 'Todo List API', type: :request, elasticsearch: true do
 
   let(:user) { create(:user) }
   let!(:lists) { create_list(:list, 10, created_by: user.id) }
@@ -87,4 +87,12 @@ RSpec.describe 'Todo List API', type: :request do
       expect(response).to have_http_status(204)
     end
   end
+
+  describe 'GET /lists/search' do
+    it 'should return lists' do
+      get "/lists/search?query=list", {}, headers
+      expect(response).to have_http_status(200)
+    end
+  end
+
 end

@@ -10,4 +10,11 @@ rails 4.2.11.1
 PSQL
 Redis
 Elastic Search
+Sendgrid - used for action mailer
+Sidekiq - worker
 ```
+
+## Model
+
+![Todo model](./docs/images/todo_model.svg)
+<img src="./docs/images/todo_model.svg">

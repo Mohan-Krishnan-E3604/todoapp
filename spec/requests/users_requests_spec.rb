@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 
 RSpec.describe 'Users API', type: :request do
   let(:user) { build(:user) }
@@ -9,11 +11,12 @@ RSpec.describe 'Users API', type: :request do
 
   describe 'POST /signup' do
     context 'when valid request' do
-      it 'creates a new user' do
+      it 'creates a new user and queue one job in UserWelcomeWorker' do
         post '/signup', valid_attributes, headers: headers
         expect(response).to have_http_status(201)
         expect(json['message']).to match('Account Created Successfully')
         expect(json['auth_token']).not_to be_nil
+        expect(UserWelcomeWorker.jobs.size).to eq(1)
       end
     end
 

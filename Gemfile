@@ -54,6 +54,8 @@ group :test do
   gem 'database_cleaner'
   gem 'simplecov'
   gem 'mock_redis'
+  gem 'rspec-sidekiq'
+  gem 'elasticsearch-extensions'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

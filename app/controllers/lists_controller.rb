@@ -30,7 +30,7 @@ class ListsController < ApplicationController
     head :no_content
   end
 
-  # Search /lists/search
+  # GET /lists/search
   def search
     records = List.search(query_parms[:query]).records.to_json
     json_response(records)

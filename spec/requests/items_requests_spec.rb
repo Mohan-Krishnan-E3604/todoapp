@@ -55,7 +55,7 @@ RSpec.describe 'Items API' do
 
     context 'use db cache is not available' do
       it 'should set redis cache' do
-        expect(REDIS).to receive(:setex).with(todo_item_key(id), 1.hour.to_i, items.first.to_json)
+        expect(REDIS).to receive(:setex).with(todo_item_key(id), 10.hour.to_i, items.first.to_json)
         get "/lists/#{list_id}/items/#{id}", {}, headers
       end
     end

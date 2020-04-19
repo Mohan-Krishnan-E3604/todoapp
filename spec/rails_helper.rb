@@ -3,6 +3,8 @@ require 'spec_helper'
 require 'database_cleaner'
 require 'simplecov'
 require 'mock_redis'
+require 'sidekiq/testing/inline'
+require 'sidekiq'
 SimpleCov.start
 ENV['RAILS_ENV'] ||= 'test'
 
