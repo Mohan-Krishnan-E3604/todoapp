@@ -30,10 +30,20 @@ class ListsController < ApplicationController
     head :no_content
   end
 
+  # Search /lists/search
+  def search
+    records = List.search(query_parms[:query]).records.to_json
+    json_response(records)
+  end
+
   private
 
   def todo_params
     params.permit(:title, :locale)
+  end
+
+  def query_parms
+    params.permit(:query)
   end
 
   def set_list

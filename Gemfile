@@ -24,10 +24,10 @@ gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'rails-4-x'
 gem 'sidekiq'
 # SendGrid action mailer
 gem 'sendgrid-actionmailer'
-
 gem 'redis'
-
 gem 'jwt'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
