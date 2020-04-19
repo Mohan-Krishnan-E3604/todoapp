@@ -28,6 +28,7 @@ gem 'redis'
 gem 'jwt'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
+gem 'apiblueprint-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
