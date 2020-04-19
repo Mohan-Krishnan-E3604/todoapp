@@ -17,4 +17,3 @@ Sidekiq - worker
 ## Model
 
 ![Todo model](./docs/images/todo_model.svg)
-<img src="./docs/images/todo_model.svg">
