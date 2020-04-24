@@ -29,6 +29,7 @@ gem 'jwt'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'apiblueprint-rails'
+gem 'rack-cors'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

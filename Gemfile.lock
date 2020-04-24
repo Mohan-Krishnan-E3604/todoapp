@@ -124,6 +124,8 @@ GEM
     pg (0.21.0-x64-mingw32)
     pg (0.21.0-x86-mingw32)
     rack (1.6.13)
+    rack-cors (1.0.6)
+      rack (>= 1.6.0)
     rack-protection (2.0.8.1)
       rack
     rack-test (0.6.3)
@@ -253,6 +255,7 @@ DEPENDENCIES
   jwt
   mock_redis
   pg (~> 0.15)
+  rack-cors
   rails (= 4.2.11.1)
   rails-api
   rails-i18n!
