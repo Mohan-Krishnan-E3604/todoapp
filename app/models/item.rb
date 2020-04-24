@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   include RedisHelper
 
   belongs_to :list
+  belongs_to :user
   # model validations
   validates_presence_of :name
 

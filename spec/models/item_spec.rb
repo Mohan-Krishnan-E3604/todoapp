@@ -7,6 +7,8 @@ RSpec.describe Item, type: :model do
 
   it { should belong_to(:list) }
 
+  it { should belong_to(:user) }
+
   it { should validate_presence_of(:name) }
 
   it 'should clear redis cache after save' do

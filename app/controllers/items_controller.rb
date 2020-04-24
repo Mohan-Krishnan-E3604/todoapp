@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
   include RedisHelper
 
-  before_action :set_list
-  before_action :set_item, only: [:show, :update, :destroy]
+  before_action :set_list, only: [:create]
+  before_action :set_item, only: [ :show, :update, :destroy]
 
   # GET /items
   def index
-    json_response(@list.items)
+    json_response(@current_user.items)
   end
 
   # GET /items/:id
@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     item = @list.items.create!(item_params)
+    @current_user.items << item
     json_response(item, :created)
   end
 
@@ -44,10 +45,10 @@ class ItemsController < ApplicationController
   end
 
   def set_list
-    @list = current_user.lists.find_by!(id: params[:listId])
+    @list = @current_user.lists.find_by!(id: params[:listId])
   end
 
   def set_item
-    @item = @list.items.find_by!(id: params[:id]) if @list.present?
+    @item = @current_user.items.find_by!(id: params[:id])
   end
 end

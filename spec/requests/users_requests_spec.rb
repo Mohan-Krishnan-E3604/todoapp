@@ -12,7 +12,7 @@ RSpec.describe 'Users API', type: :request do
   describe 'POST /signup' do
     context 'when valid request' do
       it 'creates a new user and queue one job in UserWelcomeWorker' do
-        post '/signup', valid_attributes, headers: headers
+        post '/users', valid_attributes, headers: headers
         expect(response).to have_http_status(201)
         expect(json['message']).to match('Account Created Successfully')
         expect(json['auth_token']).not_to be_nil
@@ -22,7 +22,7 @@ RSpec.describe 'Users API', type: :request do
 
     context 'when invalid request' do
       it 'does not create a new user' do
-        post '/signup', {}, headers: headers
+        post '/users', {}, headers: headers
         expect(response).to have_http_status(422)
         expect(json['message']).to match("Validation failed: Password can't be blank, Name can't be blank, Email can't be blank, Password digest can't be blank")
       end
