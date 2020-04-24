@@ -3,10 +3,10 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
-    resources :items
   end
+  resources :items
   post 'auth/login', to: 'authentication#authenticate'
-  post 'signup', to: 'users#create'
+  post 'users', to: 'users#create'
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
