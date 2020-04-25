@@ -30,6 +30,8 @@ gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'apiblueprint-rails'
 gem 'rack-cors'
+# gem for convert json response keys to camelCase
+gem 'snaky_camel'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

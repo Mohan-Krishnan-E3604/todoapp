@@ -29,6 +29,10 @@ class ItemsController < ApplicationController
   # PATCH /items/:id
   def update
     @item.update(item_params)
+    if params[:listId].present? || @item.list_id != params[:listId]
+      list = @current_user.lists.find_by!(id: params[:listId])
+      list.items << @item
+    end
     head :no_content
   end
 

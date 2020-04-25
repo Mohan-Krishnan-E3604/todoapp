@@ -25,6 +25,8 @@ module Todoapp
     config.i18n.available_locales = [:en, :pt]
     config.i18n.default_locale = :en
 
+    config.middleware.use "SnakyCamel::Middleware"
+
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.sendgrid_actionmailer_settings = {
         api_key: ENV['SENDGRID_API_KEY'],
