@@ -8,7 +8,7 @@ RSpec.describe 'Authentication', type: :request do
     context 'When request is valid' do
       it 'returns an authentication token' do
         post '/auth/login', {email: user.email, password: user.password}, headers: headers
-        expect(json['auth_token']).not_to be_nil
+        expect(json['authToken']).not_to be_nil
       end
     end
 

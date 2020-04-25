@@ -15,7 +15,7 @@ RSpec.describe 'Users API', type: :request do
         post '/users', valid_attributes, headers: headers
         expect(response).to have_http_status(201)
         expect(json['message']).to match('Account Created Successfully')
-        expect(json['auth_token']).not_to be_nil
+        expect(json['authToken']).not_to be_nil
         expect(UserWelcomeWorker.jobs.size).to eq(1)
       end
     end

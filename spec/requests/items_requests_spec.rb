@@ -77,7 +77,7 @@ RSpec.describe 'Items API' do
   describe 'PATCH /items/:id' do
     context 'when record is available' do
       it 'should return 200 status' do
-        patch "/items/#{id}", {completed: true}.to_json, headers
+        patch "/items/#{id}", {listId: list_id, completed: true}.to_json, headers
         expect(response).to have_http_status(204)
       end
     end
