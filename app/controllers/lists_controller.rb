@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy]
+  before_action :set_board, only: [:create]
 
   # GET /lists
   def index
@@ -9,7 +10,7 @@ class ListsController < ApplicationController
 
   # POST /lists
   def create
-    @list = current_user.lists.create!(todo_params)
+    @list = @board.lists.create!(todo_params.merge({created_by: @current_user.id}))
     json_response(@list)
   end
 
@@ -39,7 +40,7 @@ class ListsController < ApplicationController
   private
 
   def todo_params
-    params.permit(:title, :locale)
+    params.permit(:title, :locale, :board_id)
   end
 
   def query_parms
@@ -47,6 +48,11 @@ class ListsController < ApplicationController
   end
 
   def set_list
-    @list = List.find(params[:id])
+    @list = @current_user.lists.find_by!(id: params[:id])
   end
+
+  def set_board
+    @board = @current_user.boards.find_by!(id: params[:boardId])
+  end
+
 end

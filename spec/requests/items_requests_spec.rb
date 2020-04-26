@@ -5,7 +5,8 @@ RSpec.describe 'Items API' do
   include RedisHelper
 
   let(:user) { create(:user) }
-  let!(:list) { create(:list, created_by: user.id) }
+  let(:board) { create(:board) }
+  let!(:list) { create(:list, created_by: user.id, board_id: board.id) }
   let!(:items) { create_list(:item, 10, list_id: list.id, user_id: user.id) }
   let(:list_id) { list.id }
   let(:id) { items.first.id }

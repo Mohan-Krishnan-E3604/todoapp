@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  resources :boards
   resources :lists do
     collection do
       get 'search'

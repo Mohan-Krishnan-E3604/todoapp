@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Todo List API', type: :request, elasticsearch: true do
 
   let(:user) { create(:user) }
-  let!(:lists) { create_list(:list, 10, created_by: user.id) }
+  let(:board) { create(:board, user_id: user.id) }
+  let!(:lists) { create_list(:list, 10, created_by: user.id, board_id: board.id) }
   let(:list_id) { lists.first.id }
   let(:headers) { valid_headers }
 
@@ -33,7 +34,7 @@ RSpec.describe 'Todo List API', type: :request, elasticsearch: true do
 
       it 'should return status code 404' do
         expect(response).to have_http_status(404)
-        expect(json['message']).to eq("Couldn't find List with 'id'=123")
+        expect(json['message']).to eq("Couldn't find List with [WHERE \"lists\".\"created_by\" = ? AND \"lists\".\"id\" = ?]")
       end
     end
   end
@@ -42,7 +43,7 @@ RSpec.describe 'Todo List API', type: :request, elasticsearch: true do
 
     context 'when params is valid' do
 
-      before { post '/lists', {title: 'Test', created_by: user.id.to_s}.to_json, headers }
+      before { post '/lists', {title: 'Test', boardId: board.id}.to_json, headers }
 
       it 'should create a list' do
         expect(response).to have_http_status(200)
@@ -51,7 +52,7 @@ RSpec.describe 'Todo List API', type: :request, elasticsearch: true do
     end
 
     context 'when params is invalid' do
-      before { post '/lists', {}.to_json, headers }
+      before { post '/lists', {boardId: board.id}.to_json, headers }
 
       it 'should return status code 422' do
         expect(response).to have_http_status(422)
@@ -61,7 +62,7 @@ RSpec.describe 'Todo List API', type: :request, elasticsearch: true do
   end
 
   describe 'PUT /lists/:id' do
-    let(:update_params) { {title: 'LalaLand'}.to_json }
+    let(:update_params) { {title: 'LalaLand', boardId: board.id}.to_json }
 
     context 'when record is available' do
       before { put "/lists/#{list_id}", update_params, headers }
