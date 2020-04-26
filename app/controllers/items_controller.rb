@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.permit(:name, :completed, :locale)
+    params.permit(:name, :completed, :locale, :description)
   end
 
   def set_list

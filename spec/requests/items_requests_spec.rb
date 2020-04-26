@@ -29,6 +29,7 @@ RSpec.describe 'Items API' do
         get "/items/#{id}", {}, headers
         expect(response).to have_http_status(200)
         expect(json['id']).to eq(id)
+        expect(json['description']).to eq(items.first.description)
       end
     end
 
