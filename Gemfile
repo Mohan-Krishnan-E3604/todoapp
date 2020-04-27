@@ -33,6 +33,9 @@ gem 'rack-cors'
 # gem for convert json response keys to camelCase
 gem 'snaky_camel'
 
+# security scanner
+gem 'brakeman'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
