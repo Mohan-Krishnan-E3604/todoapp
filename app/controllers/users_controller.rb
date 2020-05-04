@@ -11,6 +11,21 @@ class UsersController < ApplicationController
     json_response(response, :created)
   end
 
+
+  def auto_complete
+    results = User.search(params[:query], {
+        fields: ['name'],
+        select: ['name', 'email'],
+        match: :word_start,
+        limit: 10,
+        load: false
+    })
+    results = results.map do |r|
+      {id: r[:id], name: r[:name], email: r[:email]}
+    end
+    json_response(results, :ok)
+  end
+
   private
 
   def user_params

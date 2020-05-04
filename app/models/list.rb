@@ -1,7 +1,5 @@
 class List < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-
+  searchkick
   # 1:m relationship with Item model
   has_many :items, dependent: :destroy
   belongs_to :user

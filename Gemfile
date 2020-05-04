@@ -26,8 +26,8 @@ gem 'sidekiq'
 gem 'sendgrid-actionmailer'
 gem 'redis'
 gem 'jwt'
-gem 'elasticsearch-rails'
-gem 'elasticsearch-model'
+# Elastic search add on
+gem 'searchkick'
 gem 'apiblueprint-rails'
 gem 'rack-cors'
 # gem for convert json response keys to camelCase
